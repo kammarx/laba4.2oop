@@ -13,6 +13,7 @@ namespace laba4._2oop
     public partial class Form1 : Form
     {
         Model model;
+       
         public Form1()
         {
             InitializeComponent();
@@ -20,9 +21,27 @@ namespace laba4._2oop
             model.observers += new System.EventHandler(this.UpdateFromModel);
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+       private void Form1_Load(object sender, EventArgs e)
         {
+        textBox1.Text = Properties.Settings.Default.A.ToString();
+            numericUpDown1.Value = Properties.Settings.Default.A;
+            trackBar1.Value = Properties.Settings.Default.A;
 
+            textBox2.Text = Properties.Settings.Default.B.ToString();
+            numericUpDown2.Value = Properties.Settings.Default.B;
+            trackBar2.Value = Properties.Settings.Default.B;
+
+            textBox3.Text = Properties.Settings.Default.C.ToString();
+            numericUpDown3.Value = Properties.Settings.Default.C;
+            trackBar3.Value = Properties.Settings.Default.C;
+
+        }
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Properties.Settings.Default.A = model.GetValue(0);
+            Properties.Settings.Default.B = model.GetValue(1);
+            Properties.Settings.Default.C = model.GetValue(2);
+            Properties.Settings.Default.Save();
         }
 
 
@@ -95,9 +114,12 @@ namespace laba4._2oop
 
 
 
-        class Model
+       public class Model
         {
-            private int[] value = { 0, 0, 0 };
+            public int A, B, C;
+            public int[] value = { 0, 0, 0 };
+        
+           
             public System.EventHandler observers;
           
             public void SetValue(int value, int index)
@@ -141,7 +163,7 @@ namespace laba4._2oop
                 }
                 else if (index == 1)
                 {
-                   if(value<this.value[2] && value>this.value[0])
+                   if(value<=this.value[2] && value>=this.value[0])
                     {
                         this.value[1] = value;
                     }
@@ -175,6 +197,9 @@ namespace laba4._2oop
                         }
                     }
                 }
+                A = this.value[0];
+                B = this.value[1];
+                C = this.value[2];
                 observers.Invoke(this, null);
             }
             public int GetValue(int index)
@@ -182,5 +207,6 @@ namespace laba4._2oop
                 return value[index];
             }
         }
+
     }
 }
