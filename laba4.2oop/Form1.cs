@@ -16,7 +16,7 @@ namespace laba4._2oop
         public Form1()
         {
             InitializeComponent();
-            model = new Model(50,60,70);
+            model = new Model();
             model.observers += new System.EventHandler(this.UpdateFromModel);
         }
 
@@ -81,7 +81,15 @@ namespace laba4._2oop
         }
         private void UpdateFromModel(object sender,EventArgs e)
         {
-         
+            textBox1.Text = model.GetValue(0).ToString();
+            textBox2.Text = model.GetValue(1).ToString();
+            textBox3.Text = model.GetValue(2).ToString();
+            trackBar1.Value = model.GetValue(0);
+            trackBar2.Value = model.GetValue(1);
+            trackBar3.Value = model.GetValue(2);
+            numericUpDown1.Value = Decimal.Parse(model.GetValue(0).ToString());
+            numericUpDown2.Value = Decimal.Parse(model.GetValue(1).ToString());
+            numericUpDown3.Value = Decimal.Parse(model.GetValue(2).ToString());
         }
 
 
@@ -91,12 +99,7 @@ namespace laba4._2oop
         {
             private int[] value = { 0, 0, 0 };
             public System.EventHandler observers;
-            public Model(int A, int B, int C)
-            {
-                this.value[0] = A;
-                this.value[1] = B;
-                this.value[2] = C;
-            }
+          
             public void SetValue(int value, int index)
             {
                 if (index == 0)
@@ -138,11 +141,39 @@ namespace laba4._2oop
                 }
                 else if (index == 1)
                 {
-                   
+                   if(value<this.value[2] && value>this.value[0])
+                    {
+                        this.value[1] = value;
+                    }
                 }
                 else
                 {
-                  
+                    if (value < 0)
+                    {
+                        this.value[0] = 0;
+                        this.value[1] = 0;
+                        this.value[2] = 0;
+                    }
+                    else if (value > 100) 
+                    {
+                        this.value[2] = value;
+                    }
+
+                    else if (value<=this.value[0])
+                    {
+                        this.value[0] = value;
+                        this.value[1] = value;
+                        this.value[2] = value;
+
+                    }
+                    else if (value >= this.value[0])
+                    {
+                        this.value[2] = value;
+                        if (value <= this.value[1])
+                        {
+                            this.value[1] = value;
+                        }
+                    }
                 }
                 observers.Invoke(this, null);
             }

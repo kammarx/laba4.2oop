@@ -173,6 +173,7 @@ namespace laba4._2oop
             // trackBar1
             // 
             this.trackBar1.Location = new System.Drawing.Point(28, 223);
+            this.trackBar1.Maximum = 100;
             this.trackBar1.Name = "trackBar1";
             this.trackBar1.Size = new System.Drawing.Size(120, 45);
             this.trackBar1.TabIndex = 11;
@@ -181,6 +182,7 @@ namespace laba4._2oop
             // trackBar2
             // 
             this.trackBar2.Location = new System.Drawing.Point(196, 223);
+            this.trackBar2.Maximum = 100;
             this.trackBar2.Name = "trackBar2";
             this.trackBar2.Size = new System.Drawing.Size(120, 45);
             this.trackBar2.TabIndex = 12;
@@ -189,6 +191,7 @@ namespace laba4._2oop
             // trackBar3
             // 
             this.trackBar3.Location = new System.Drawing.Point(358, 223);
+            this.trackBar3.Maximum = 100;
             this.trackBar3.Name = "trackBar3";
             this.trackBar3.Size = new System.Drawing.Size(120, 45);
             this.trackBar3.TabIndex = 13;
