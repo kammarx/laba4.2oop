@@ -47,7 +47,7 @@ namespace laba4._2oop
 
         private void numericUpDown1_ValueChanged(object sender, EventArgs e)
         {
-            model.SetValue(Decimal.ToInt32(numericUpDown1.Value),0);
+            model.SetValue(Decimal.ToInt32(numericUpDown1.Value), 0);
         }
 
         private void numericUpDown2_ValueChanged(object sender, EventArgs e)
@@ -139,10 +139,15 @@ namespace laba4._2oop
 
                     else if (value <= this.value[2])
                     {
-                        this.value[0] = value;
+                        
                         if (value > this.value[1])
                         {
+                            this.value[0] = value;
                             this.value[1] = value;
+                        }
+                        else if(value<= this.value[1])
+                        {
+                            this.value[0] = value;
                         }
                     }
 
